@@ -33,7 +33,7 @@ const Login = () => {
                 <Form.Item label="Password" name="password">
                     <Input type="password" required />
                 </Form.Item>
-                <Link to='/login' className='text-secondary mb-2'>Not A User Register Here </Link>
+                <Link to='/register' className='text-secondary mb-2'>Not A User Register Here </Link>
                 <button className='btn btn-success' type='submit'>Login</button>
             </Form>
         </div>
