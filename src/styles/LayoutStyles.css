@@ -76,13 +76,13 @@
   }
 
   .header-content i{
-    margin-right: 10px;
+    margin-right:15px;
     font-size: 1.2rem;
   }
 
   .header-content a{
     text-decoration: none;
     color: blue;
-    margin: 0 2px;
+    margin: 0 10px;
     text-transform: uppercase;
   }
