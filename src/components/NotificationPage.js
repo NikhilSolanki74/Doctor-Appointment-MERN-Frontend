@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+// const {TabPane}=Tabs
 const NotificationPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
