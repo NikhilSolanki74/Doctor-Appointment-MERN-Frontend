@@ -5,6 +5,7 @@ import { adminMenu, userMenu } from "./../Data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge, message } from "antd";
+import { Cursor } from "mongoose";
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
@@ -57,8 +58,8 @@ const Layout = ({ children }) => {
           </div>
           <div className="content">
             <div className="header">
-              <div className="header-content">
-              <Badge count={user && user.notification.length}>
+              <div className="header-content"  style={{cursor:"pointer"}} >
+              <Badge count={user && user.notification.length}  onClick={()=>{navigate('/notification')}}>
                   <i className="fa-solid fa-bell"></i>
                 </Badge>
                 <Link to="/profile">{user?.name}</Link>
