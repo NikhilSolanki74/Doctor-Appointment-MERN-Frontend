@@ -1,33 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Layout from './../components/Layout';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Layout from "./../components/Layout";
+import { Row } from "antd";
+import DoctorList from "../components/DoctorList";
 const HomePage = () => {
-  const [error, setError] = useState(null);
-
+  const [doctors, setDoctors] = useState([]);
+  // login user data
   const getUserData = async () => {
     try {
-      const res = await axios.post('/api/v1/getUserData', {}, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem('token'),
-        },
-     });
-      // Process response data if needed
+      const res = await axios.get(
+        "/api/v1/getAllDoctors",
+
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      if (res.data.success) {
+        setDoctors(res.data.data);
+      }
     } catch (error) {
-      // Display an error message to the user
-      setError('An error occurred while fetching user data. Please try again later.');
-      console.error(error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
     getUserData();
   }, []);
-
   return (
     <Layout>
-      <h1>This is our HomePage</h1>
-      {error && <div className="error-message">{error}</div>}
+      <h1 className="text-center">Home Page</h1>
+      <Row>
+        {doctors && doctors.map((doctor) => <DoctorList doctor={doctor} />)}
+      </Row>
     </Layout>
   );
 };
