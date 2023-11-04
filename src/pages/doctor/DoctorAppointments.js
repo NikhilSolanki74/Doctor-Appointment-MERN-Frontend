@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Layout from '../../components/Layout'
 import axios from "axios";
-import Layout from "./../components/Layout";
 import moment from "moment";
 import { Table } from "antd";
+const DoctorAppointments = () => {
+    const [appointments, setAppointments] = useState([]);
 
-const Appointments = () => {
-  const [appointments, setAppointments] = useState([]);
-
-  const getAppointments = async () => {
-    try {
-      const res = await axios.get("/api/v1/user-appointments", {
+    const getAppointments = async () => {
+    try{
+    const res = await axios.get("/api/v1/doctor/doctor-appointments", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -66,7 +65,7 @@ const Appointments = () => {
       <h1>Appoinmtnets Lists</h1>
       <Table columns={columns} dataSource={appointments} />
     </Layout>
-  );
-};
+  )
+}
 
-export default Appointments;
+export default DoctorAppointments
