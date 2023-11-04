@@ -34,12 +34,17 @@ const BookingPage = () => {
       console.log(error);
     }
   };
+
   // =============== booking func
   const handleBooking = async () => {
     try {
+        setIsAvailable(true);
+      if (!date && !time) {
+        return alert("Date & Time Required");
+      }
       dispatch(showLoading());
       const res = await axios.post(
-        "/api/v1/user/book-appointment",
+        "/api/v1/book-appointment",
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -57,6 +62,34 @@ const BookingPage = () => {
       dispatch(hideLoading());
       if (res.data.success) {
         message.success(res.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+    }
+  };
+
+
+//handle availability
+const handleAvailability = async () => {
+    try {
+      dispatch(showLoading());
+      const res = await axios.post(
+        "/api/v1/booking-availability",
+        { doctorId: params.doctorId, date, time },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (res.data.success) {
+        setIsAvailable(true);
+        console.log(isAvailable);
+        message.success(res.data.message);
+      } else {
+        message.error(res.data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
@@ -97,7 +130,7 @@ const BookingPage = () => {
                   setTime(moment(value).format("HH:mm"));
                 }}
               />
-              <button className="btn btn-primary mt-2">
+              <button className="btn btn-primary mt-2" onClick={handleAvailability}>
                 Check Availability
               </button>
               <button className="btn btn-dark mt-2" onClick={handleBooking}>
