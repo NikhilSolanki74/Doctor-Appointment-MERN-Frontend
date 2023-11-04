@@ -50,17 +50,7 @@ const Layout = ({ children }) => {
               <hr />
             </div>
             <div className="menu">
-              {/* {SidebarMenu.map((menu) => {
-                const isActive = location.pathname === menu.path;
-                return (
-                  <>
-                    <div className={`menu-item ${isActive && "active"}`}>
-                      <i className={menu.icon}></i>
-                      <Link to={menu.path}>{menu.name}</Link>
-                    </div>
-                  </>
-                );
-              })} */}
+              
               {SidebarMenu.map((menu, index) => {
                 const isActive = location.pathname === menu.path;
                 return (
