@@ -11,6 +11,7 @@ import NotificationPage from './components/NotificationPage';
 import Users from './pages/admin/Users';
 import Doctors from './pages/admin/Doctors';
 import Profile from './pages/doctor/Profile';
+import MsgProfile from './pages/MsgProfile';
 import BookingPage from './pages/BookingPage';
 import Appointments from './pages/Appointments';
 import DoctorAppointments from './pages/doctor/DoctorAppointments';
@@ -73,6 +74,11 @@ function App() {
           <Route path='/doctor-appointments' element= {
         <ProtectedRoute>
            <DoctorAppointments/>
+         </ProtectedRoute>
+          } />
+          <Route path='/profile' element= {
+        <ProtectedRoute>
+           <MsgProfile/>
          </ProtectedRoute>
           } />
           <Route path='/' element= {
